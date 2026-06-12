@@ -1,6 +1,6 @@
 # kafkactl
 
-First install kafkactl to test connectivity:
+First install [kafkactl](https://github.com/deviceinsight/kafkactl) to test connectivity:
 
     wget https://github.com/deviceinsight/kafkactl/releases/download/v5.19.0/kafkactl_5.19.0_linux_amd64.deb
     sudo dpkg -i kafkactl_5.19.0_linux_amd64.deb
