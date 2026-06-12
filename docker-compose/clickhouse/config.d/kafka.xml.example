@@ -1,0 +1,14 @@
+<clickhouse>
+    <kafka>
+       <security_protocol>sasl_ssl</security_protocol>
+       <sasl_mechanism>SCRAM-SHA-512</sasl_mechanism>
+       <sasl_username>REPLACE ME</sasl_username>
+       <!-- Note passwords here must be xml-escaped -->
+       <sasl_password>REPLACE ME</sasl_password>
+    </kafka>
+    <macros>
+        <kafka_broker_list>REPLACE ME</kafka_broker_list>
+        <kafka_topic>REPLACE ME</kafka_topic>
+        <kafka_consumer_group>REPLACE ME</kafka_consumer_group>
+    </macros>
+</clickhouse>

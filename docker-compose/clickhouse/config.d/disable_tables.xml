@@ -1,0 +1,62 @@
+<clickhouse>
+    <query_thread_log remove="1" />
+    <metric_log remove="1" />
+    <asynchronous_metric_log remove="1" />
+
+    <part_log replace="1">
+        <database>system</database>
+        <table>part_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <engine>
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(event_date)
+ORDER BY (event_time)
+TTL toStartOfMonth(event_date) + INTERVAL 3 MONTH
+SETTINGS ttl_only_drop_parts=1
+        </engine>
+    </part_log>
+    <query_log replace="1">
+        <database>system</database>
+        <table>query_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <engine>
+ENGINE = MergeTree
+PARTITION BY event_date
+ORDER BY (event_time)
+TTL event_date + interval 7 day
+SETTINGS ttl_only_drop_parts=1
+        </engine>
+    </query_log>
+
+    <opentelemetry_span_log replace="1">
+        <database>system</database>
+        <table>opentelemetry_span_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <engine>
+ENGINE = MergeTree
+PARTITION BY toYYYYMMDD(finish_date)
+ORDER BY (finish_date, finish_time_us, trace_id)
+TTL finish_date + interval 2 day
+SETTINGS ttl_only_drop_parts=1
+        </engine>
+    </opentelemetry_span_log>
+
+    <error_log replace="1">
+        <database>system</database>
+        <table>error_log</table>
+        <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+        <engine>
+ENGINE = MergeTree
+PARTITION BY toYYYYMM(event_date)
+ORDER BY (event_date, event_time)
+TTL event_date + interval 30 day
+SETTINGS ttl_only_drop_parts=1
+        </engine>
+    </error_log>
+
+    <processors_profile_log remove="1"/>
+    <text_log remove="1"/>
+    <trace_log remove="1"/>
+    <query_views_log remove="1"/>
+    <latency_log remove="1"/>
+</clickhouse>

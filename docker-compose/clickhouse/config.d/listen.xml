@@ -1,0 +1,19 @@
+<clickhouse>
+     <!-- wildcard listen ipv4, loopback listen ipv6 -->
+    <listen_host>0.0.0.0</listen_host>
+    <listen_host>::1</listen_host>
+    <listen_try>1</listen_try>
+
+    <!--
+    <logger>
+        <console>1</console>
+    </logger>
+    -->
+
+    <!--
+    <access_control_improvements>
+        <settings_constraints_replace_previous>true</settings_constraints_replace_previous>
+    </access_control_improvements>
+    -->
+
+</clickhouse>

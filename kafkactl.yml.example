@@ -1,0 +1,10 @@
+contexts:
+  default:
+    brokers: [b-1-public.xxx.c5.kafka.eu-west-1.amazonaws.com:9196,b-2-public.xxx.c5.kafka.eu-west-1.amazonaws.com:9196,b-3-public.xxx.c5.kafka.eu-west-1.amazonaws.com:9196]
+    tls:
+      enabled: true
+    sasl:
+      enabled: true
+      mechanism: scram-sha512
+      username: REPLACE ME
+      password: "REPLACE ME"

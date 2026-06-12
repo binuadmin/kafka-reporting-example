@@ -1,0 +1,21 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:26.5
+    networks:
+      - overlay
+    environment:
+      - CLICKHOUSE_SKIP_USER_SETUP=1
+    #ports:
+    # - 9000:9000
+    # - 8123:8123
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./docker-compose/clickhouse/config.d/:/etc/clickhouse-server/config.d:ro
+      # Provision schema on first run
+      - ./docker-compose/clickhouse/schema/:/docker-entrypoint-initdb.d:ro
+
+networks:
+  overlay:
+
+volumes:
+  clickhouse_data:
