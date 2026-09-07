@@ -1,0 +1,14 @@
+# .github/workflows/test-suite.yml
+name: Test-Suite
+on:
+  push:
+    branches:
+      - "main"
+      - "master"
+  pull_request:
+    branches:
+      - "*"
+jobs:
+  test-suite:
+    uses: binuadmin/devops-reference-workflows/.github/workflows/test-suite.yml@main
+    secrets: inherit
